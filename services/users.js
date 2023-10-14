@@ -5,6 +5,12 @@ module.exports = {
 
         sql = 'SELECT * FROM User'
         return dbService.querypromise(sql)
+    },
+
+    getAllPerfiles : () => {
+
+        sql = 'SELECT * FROM Perfil'
+        return dbService.querypromise(sql)
     }
 
     // getUser : (id) => {

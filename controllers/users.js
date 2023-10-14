@@ -13,7 +13,20 @@ module.exports = {
         }
 
 
-    }
+    },
+    getAllPerfiles : async (req, res, next) => {
+        try{
+
+            const  perfiles = await UserServices.getAllPerfiles();
+            res.json({perfiles})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
+        }
+
+
+    },
 
     // getUser : async (req, res) => {
 
