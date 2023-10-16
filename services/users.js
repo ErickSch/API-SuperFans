@@ -3,7 +3,7 @@ const dbService = require('../config/db.js')
 module.exports = {
     getAllUsers : () => {
 
-        sql = 'SELECT * FROM User'
+        sql = 'SELECT * FROM Users'
         return dbService.querypromise(sql)
     },
 
