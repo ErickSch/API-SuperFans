@@ -25,7 +25,7 @@ module.exports = {
 
         const { userId, username, password } = body
 
-        sql = `INSERT INTO User (username, password) VALUES ('${username}', '${password}') RETURNING *`
+        sql = `INSERT INTO Users (username, password) VALUES ('${username}', '${password}') RETURNING *`
         // sql = `INSERT INTO User (userId, username, password) VALUES (${userId}, '${username}', '${password}') RETURNING *`
 
 
