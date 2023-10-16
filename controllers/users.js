@@ -28,20 +28,20 @@ module.exports = {
 
     },
 
-    // getUser : async (req, res) => {
+    getPerfil : async (req, res) => {
 
-    //     const id = req.params.id
+        const id = req.params.id
 
-    //     try{
+        try{
 
-    //         const  user = await UserServices.getUser(id);
-    //         res.json({user})
+            const  perfil = await UserServices.getPerfil(id);
+            res.json({perfil})
 
 
-    //     } catch (err){
-    //         res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
-    //     }
-    // },
+        } catch (err){
+            res.json({"message": `Error al obtener el perfil. Err: ${err}`})
+        }
+    },
 
     // addUser : async (req, res) => {
 

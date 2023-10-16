@@ -11,15 +11,15 @@ module.exports = {
 
         sql = 'SELECT * FROM Perfil'
         return dbService.querypromise(sql)
-    }
+    },
 
-    // getUser : (id) => {
+    getPerfil : (id) => {
 
-    //     sql = `SELECT id, email FROM usuario WHERE id=${id}`
+        sql = `SELECT * FROM Perfil WHERE idperfil=${id}`
 
 
-    //     return dbService.querypromise(sql)
-    // },
+        return dbService.querypromise(sql)
+    },
 
     // addUser : (body) => {
 
