@@ -12,7 +12,6 @@ module.exports = {
             res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
         }
 
-
     },
     getAllPerfiles : async (req, res, next) => {
         try{
@@ -28,13 +27,14 @@ module.exports = {
 
     },
 
-    getPerfil : async (req, res) => {
+    getPerfilWUser : async (req, res) => {
 
-        const id = req.params.id
+        const username = req.params.username
+        const password = req.params.password
 
         try{
 
-            const  perfil = await UserServices.getPerfil(id);
+            const  perfil = await UserServices.getPerfilWUser(username, password);
             res.json({perfil})
 
 
@@ -42,6 +42,21 @@ module.exports = {
             res.json({"message": `Error al obtener el perfil. Err: ${err}`})
         }
     },
+
+    // getPerfil : async (req, res) => {
+
+    //     const id = req.params.id
+
+    //     try{
+
+    //         const  perfil = await UserServices.getPerfil(id);
+    //         res.json({perfil})
+
+
+    //     } catch (err){
+    //         res.json({"message": `Error al obtener el perfil. Err: ${err}`})
+    //     }
+    // },
 
     postUser : async (req, res) => {
 

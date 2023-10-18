@@ -13,13 +13,20 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
-    getPerfil : (id) => {
+    getPerfilWUser : (username, password) => {
 
-        sql = `SELECT * FROM Perfil WHERE idperfil=${id}`
-
+        sql = `SELECT * FROM getperfil(${username, password})`
 
         return dbService.querypromise(sql)
     },
+
+    // getPerfil : (id) => {
+
+    //     sql = `SELECT * FROM Perfil WHERE idperfil=${id}`
+
+
+    //     return dbService.querypromise(sql)
+    // },
 
     postUser : (body) => {
 
