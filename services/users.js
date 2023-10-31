@@ -15,7 +15,7 @@ module.exports = {
 
     getPerfilWUser : (username, password) => {
 
-        sql = `SELECT * FROM getperfil(${username, password})`
+        sql = `SELECT * FROM getperfil('${username}', '${password}')`
 
         return dbService.querypromise(sql)
     },

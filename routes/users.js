@@ -4,7 +4,7 @@ const UserControllers = require('../controllers/users.js')
 
 router.get('/', UserControllers.getAllUsers)
 router.get('/perfiles', UserControllers.getAllPerfiles)
-router.get('/perfiles/', UserControllers.getPerfilWUser)
+router.get('/perfiles/:username/:password', UserControllers.getPerfilWUser)
 // router.get('/perfiles/:id', UserControllers.getPerfil)
 router.post('/', UserControllers.postUser)
 // router.post('/add', UserControllers.addUser)
