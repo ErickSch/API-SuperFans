@@ -20,6 +20,25 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
+    getPerfilWId : (id) => {
+
+        sql = `SELECT * FROM Perfil WHERE idperfil = ${id}`
+
+        return dbService.querypromise(sql)
+    },
+
+    // http://localhost:3000/users/perfiles/1
+    updatePerfilWId : (body, id) => {
+
+        const { fname } = body
+
+        sql = `UPDATE Perfil
+        SET fname = '${fname}'
+        WHERE idperfil = ${id}`
+
+        return dbService.querypromise(sql)
+    },
+
     // getPerfil : (id) => {
 
     //     sql = `SELECT * FROM Perfil WHERE idperfil=${id}`
