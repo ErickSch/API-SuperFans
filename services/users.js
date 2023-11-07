@@ -39,13 +39,13 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
-    // getPerfil : (id) => {
+    getImage : (id) => {
+        return
+        // sql = `SELECT * FROM Perfil WHERE idperfil = ${id}`
 
-    //     sql = `SELECT * FROM Perfil WHERE idperfil=${id}`
+        // return dbService.querypromise(sql)
+    },
 
-
-    //     return dbService.querypromise(sql)
-    // },
 
     postUser : (body) => {
 
@@ -58,25 +58,4 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
-    // addUser : (body) => {
-
-
-    //     const { email } = body
-
-    //     sql = `INSERT INTO usuario (email) VALUES ('${email}') RETURNING *`
-
-
-    //     return dbService.querypromise(sql)
-    // },
-
-    // updateUser : (id, body) => {
-
-
-    //     const { email } = body
-
-    //     sql = `UPDATE usuario SET email = '${email}' WHERE id = ${id} RETURNING *`
-
-
-    //     return dbService.querypromise(sql)
-    // }
 }

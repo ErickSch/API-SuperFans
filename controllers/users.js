@@ -1,4 +1,5 @@
 const UserServices = require('../services/users.js')
+const path = require('path');
 
 module.exports = {
     getAllUsers : async (req, res, next) => {
@@ -82,6 +83,27 @@ module.exports = {
 
         } catch (err){
             res.status(500).json({"message": `Error al crear usuario. Err: ${err}`})
+        }
+    },
+
+    getImage : async (req, res) => {
+
+        const options = {
+            root: path.join(__dirname)
+        }
+        const fileName = 'images/tacos.jpg';
+
+        const imageName = req.params.image
+
+        try{
+
+            // const  image = await UserServices.getImage(imageName);
+            // res.json({perfil})
+            res.sendFile(fileName, options)
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener el imagen. Err: ${err}`})
         }
     },
 
