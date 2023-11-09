@@ -58,4 +58,10 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
+    getAllRecetas : () => {
+
+        sql = 'SELECT recetaname, tiempo, img FROM recetas'
+        return dbService.querypromise(sql)
+    },
+
 }

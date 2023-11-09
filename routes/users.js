@@ -7,6 +7,7 @@ router.get('/perfiles', UserControllers.getAllPerfiles)
 router.get('/perfiles/:username/:password', UserControllers.getPerfilWUser)
 router.get('/perfiles/:id', UserControllers.getPerfilWId)
 router.get('/image/:image', UserControllers.getImage)
+router.get('/recetas', UserControllers.getAllRecetas)
 router.post('/', UserControllers.postUser)
 router.put('/perfiles/:id', UserControllers.updatePerfil)
 

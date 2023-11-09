@@ -107,4 +107,18 @@ module.exports = {
         }
     },
 
+    getAllRecetas : async (req, res, next) => {
+        try{
+
+            const  recetas = await UserServices.getAllRecetas();
+            res.json({recetas})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener los recetas. Err: ${err}`})
+        }
+
+
+    },
+
 }
