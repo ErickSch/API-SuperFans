@@ -15,9 +15,7 @@ app.use(express.urlencoded({extended: true}))
 
 // route middlewares
 // app.use('/auth', verifyToken, dashboadRoutes);
-app.use('/users', verifyToken, dashboadRoutes);
-
-
+app.use('/tests', verifyToken, dashboadRoutes);
 
 
 app.get('/', (req, res) => {

@@ -75,13 +75,13 @@ module.exports = {
 
     // Crear usuario
     registerUser : async (req, res) => {
-        /* Registro
-        // validate user
-        const { error } = schemaRegister.validate(req.body)
+        //  Registro
+        // // validate user
+        // const { error } = schemaRegister.validate(req.body)
         
-        if (error) {
-            return res.status(400).json({error: error.details[0].message})
-        }
+        // if (error) {
+        //     return res.status(400).json({error: error.details[0].message})
+        // }
 
         const isEmailExist = await User.findOne({ email: req.body.email });
         if (isEmailExist) {
@@ -92,11 +92,10 @@ module.exports = {
         const salt = await bcrypt.genSalt(10);
         const password = await bcrypt.hash(req.body.password, salt);
 
-        const user = new User({
-            name: req.body.name,
+        const user = {
             email: req.body.email,
             password: password
-        });
+        };
         try {
             const savedUser = await user.save();
             res.json({
@@ -106,19 +105,19 @@ module.exports = {
         } catch (error) {
             res.status(400).json({error})
         }
-        */
 
 
 
-        try{
 
-            const  user = await UserServices.postUser( req.body );
-            res.status(200).json({user})
+        // try{
+
+        //     const  user = await UserServices.postUser( req.body );
+        //     res.status(200).json({user})
 
 
-        } catch (err){
-            res.status(500).json({"message": `Error al crear usuario. Err: ${err}`})
-        }
+        // } catch (err){
+        //     res.status(500).json({"message": `Error al crear usuario. Err: ${err}`})
+        // }
     },
 
     updatePerfil : async (req, res) => {
