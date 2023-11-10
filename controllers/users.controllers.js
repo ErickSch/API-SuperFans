@@ -100,7 +100,7 @@ module.exports = {
             const savedUser = await user.save();
             res.json({
                 // error: null,
-                error: 1,
+                error: null,
                 data: savedUser
             })
         } catch (error) {

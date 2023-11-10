@@ -93,7 +93,8 @@ module.exports = {
         }, process.env.TOKEN_SECRET)
 
         res.header('auth-token', token).json({
-            error: null,
+            // error: null,
+            error: 1,
             data: {token}
         })
         
