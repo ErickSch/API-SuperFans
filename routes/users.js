@@ -9,6 +9,8 @@ router.get('/perfiles/:id', UserControllers.getPerfilWId)
 router.get('/image/:image', UserControllers.getImage)
 router.get('/recetas', UserControllers.getAllRecetas)
 router.post('/', UserControllers.registerUser)
+router.get('/recetas/:id', UserControllers.getRecetasFavoritasWId)
+router.post('/', UserControllers.postUser)
 router.put('/perfiles/:id', UserControllers.updatePerfil)
 
 module.exports = router;

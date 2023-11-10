@@ -168,4 +168,19 @@ module.exports = {
 
     },
 
+    getRecetasFavoritasWId : async (req, res) => {
+
+        const id = req.params.id
+
+        try{
+
+            const  favoritas = await UserServices.getRecetasFavoritasWId(id);
+            res.json({favoritas})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener el recetas favoritas. Err: ${err}`})
+        }
+    },
+
 }
