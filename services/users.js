@@ -64,4 +64,11 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
+    getRecetasFavoritasWId : (id) => {
+
+        sql = `SELECT * FROM findFavoritos(${id})`
+
+        return dbService.querypromise(sql)
+    }
+
 }
