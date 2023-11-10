@@ -48,8 +48,15 @@ module.exports = {
 
         if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
         
+        // res.json({
+        //     error: null,
+        //     data: 'exito bienvenido'
+        //     // token: token
+        // })
+        
         
         // create token
+        console.log(process.env.TOKEN_SECRET)
         const token = jwt.sign({
             name: user.username,
             id: user._id,
@@ -61,12 +68,7 @@ module.exports = {
             data: {token}
         })
         
-        res.json({
-            error: null,
-            data: 'exito bienvenido',
-            token: token
-        })
-        
+
     },
 
     getRutaProtegida : (req, res) => {

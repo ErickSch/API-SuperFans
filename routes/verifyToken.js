@@ -2,9 +2,12 @@ const jwt = require('jsonwebtoken')
 
 // middleware to validate token (rutas protegidas)
 const verifyToken = (req, res, next) => {
-    const token = req.header('auth-token')
+    // const token = req.header('auth-token')
+    const token = req.header('Authorization')
+
     if (!token) return res.status(401).json({ error: 'Acceso denegado' })
     try {
+        console.log(process.env.TOKEN_SECRET)
         const verified = jwt.verify(token, process.env.TOKEN_SECRET)
         req.user = verified
         next() // continuamos
