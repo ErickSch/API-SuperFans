@@ -4,7 +4,7 @@ dotenv.config();
 
 // import routes
 const dashboadRoutes = require('./routes/auth');
-const verifyToken = require('./routes/verifyToken');
+const verifyToken = require('./auth/verifyToken');
 
 const app = express()
 

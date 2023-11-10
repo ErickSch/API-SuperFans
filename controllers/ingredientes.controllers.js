@@ -1,4 +1,4 @@
-const IngredientesServices = require('../services/ingredientes.js')
+const IngredientesServices = require('../services/ingredientes.services.js')
 
 module.exports = {
 

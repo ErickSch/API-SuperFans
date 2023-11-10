@@ -18,6 +18,34 @@ module.exports = {
     },
 
     login : async (req, res) => {
+
+        /* LOG IN con contrasena hasheada
+                try {
+        const user = await getUserByGameUser(gameUser);
+
+        // Caso en el que no haya nombres de usuario registrados
+        if (!user) {
+            console.log('No gameUsers registered');
+            return cb(null, false, { message: 'No gameUsers registered' });
+        }
+        // Comparar contraseña ingresada encriptada con contraseña del usuario ingresado.
+        const hashedPwd = user.pwd;
+        const pwdMatch = await bcrypt.compare(pwd, hashedPwd);
+
+        // Caso en el que las contraseñas no coincidan.
+        if (!pwdMatch) {
+            console.log('Wrong password');
+            return cb(null, false, { message: 'Wrong password' });
+        }
+
+        return cb(null, user);
+        } catch (error) {
+        console.error('Error logging in:', error);
+        return cb(error);
+        }
+        */
+
+
         // validaciones
 
         // const { error } = schemaLogin.validate(req.body);
