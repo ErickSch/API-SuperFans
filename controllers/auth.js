@@ -44,26 +44,29 @@ module.exports = {
         if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
     
         // const validPassword = await bcrypt.compare(req.body.password, user.password);
-        const validPassword = user.password == userDB.password ? true : false;
+        const validPassword = user.password == userDB.password;
 
         if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
         
-        res.json({
-            error: null,
-            data: 'exito bienvenido'
-        })
-
-            // create token
+        
+        // create token
         const token = jwt.sign({
             name: user.username,
             id: user._id,
             exp: Date.now() + 60 * 1000
         }, process.env.TOKEN_SECRET)
-        
+
         res.header('auth-token', token).json({
             error: null,
             data: {token}
         })
+        
+        res.json({
+            error: null,
+            data: 'exito bienvenido',
+            token: token
+        })
+        
     },
 
     getRutaProtegida : (req, res) => {

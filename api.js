@@ -14,7 +14,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 // route middlewares
-app.use('/auth', verifyToken, dashboadRoutes);
+// app.use('/auth', verifyToken, dashboadRoutes);
+app.use('/users', verifyToken, dashboadRoutes);
 
 
 
