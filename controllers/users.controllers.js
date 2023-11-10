@@ -99,7 +99,8 @@ module.exports = {
         try {
             const savedUser = await user.save();
             res.json({
-                error: null,
+                // error: null,
+                error: 1,
                 data: savedUser
             })
         } catch (error) {
