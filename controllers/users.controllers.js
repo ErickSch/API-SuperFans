@@ -130,7 +130,20 @@ module.exports = {
 
 
         } catch (err){
-            res.status(500).json({"message": `Error al crear usuario. Err: ${err}`})
+            res.status(500).json({"message": `Error actualizar nombre. Err: ${err}`})
+        }
+    },
+
+    updatePesoPerfil : async (req, res) => {
+
+        try{
+            const id = req.params.id
+            const weight = await UserServices.updatePesoPerfilWId( req.body, id);
+            res.status(200).json({weight})
+
+
+        } catch (err){
+            res.status(500).json({"message": `Error actualizar peso. Err: ${err}`})
         }
     },
 

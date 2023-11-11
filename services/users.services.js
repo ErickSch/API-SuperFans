@@ -40,6 +40,17 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
+    updatePesoPerfilWId : (body, id) => {
+
+        const { weight } = body
+
+        sql = `UPDATE Perfil
+        SET weight = ${weight}
+        WHERE idperfil = ${id}`
+
+        return dbService.querypromise(sql)
+    },
+
     getImage : (id) => {
         return
         // sql = `SELECT * FROM Perfil WHERE idperfil = ${id}`

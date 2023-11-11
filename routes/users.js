@@ -11,5 +11,6 @@ router.get('/recetas', UserControllers.getAllRecetas)
 router.post('/', UserControllers.registerUser)
 router.get('/recetas/:id', UserControllers.getRecetasFavoritasWId)
 router.put('/perfiles/:id', UserControllers.updatePerfil)
+router.put('/perfiles/peso/:id', UserControllers.updatePesoPerfil)
 
 module.exports = router;
