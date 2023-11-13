@@ -22,8 +22,8 @@ La principal función de la aplicación "SuperFans" es poder registrar los produ
 - Asegurarse de que se cuenta con el archivo ".env" con las credenciales correctas de la base de datos.
 ```bash
 PORT= 
-DBConfigLink=    
-TOKEN_SECRET=   
+DBConfigLink= 
+TOKEN_SECRET= 
 ```
 
 - Asegurarse de no descargar la carpeta de node modules de otro usuario.
