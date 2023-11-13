@@ -1,5 +1,7 @@
 const UserServices = require('../services/users.services.js')
 const path = require('path');
+const bcrypt = require('bcrypt');
+
 
 module.exports = {
     getAllUsers : async (req, res, next) => {
@@ -59,59 +61,37 @@ module.exports = {
         }
     },
 
-
-    // postUser : async (req, res) => {
-
-    //     try{
-
-    //         const  user = await UserServices.postUser( req.body );
-    //         res.status(200).json({user})
-
-
-    //     } catch (err){
-    //         res.status(500).json({"message": `Error al crear usuario. Err: ${err}`})
-    //     }
-    // },
-
     // Crear usuario
     registerUser : async (req, res) => {
-        //  Registro
-        // // validate user
-        // const { error } = schemaRegister.validate(req.body)
-        
-        // if (error) {
-        //     return res.status(400).json({error: error.details[0].message})
-        // }
 
-        // const isEmailExist = await User.findOne({ email: req.body.email });
-        // if (isEmailExist) {
-        //     return res.status(400).json({error: 'Email ya registrado'})
-        // }
+        createUser : try{
+            const  userExists = await UserServices.userExists( req.body.username );
 
-        // // hash contraseña
-        // const salt = await bcrypt.genSalt(10);
-        // const password = await bcrypt.hash(req.body.password, salt);
+            // Validar que el username no ha sido registrado
+            if (userExists.length > 0){
+                res.status(500).json({"message": "El nombre de usuario ya ha sido registrado"})
+                break createUser;
+            }
 
-        // const user = {
-        //     email: req.body.email,
-        //     password: password
-        // };
-        // try {
-        //     const savedUser = await user.save();
-        //     res.json({
-        //         // error: null,
-        //         error: null,
-        //         data: savedUser
-        //     })
-        // } catch (error) {
-        //     res.status(400).json({error})
-        // }
+            // Hash de la contrasena
+            const salt = await bcrypt.genSalt(10);
+            const password = await bcrypt.hash(req.body.pass, salt);
+
+            // Descomentar cuando quepan las contrasenas hashed en la bd
+            // const user = {
+            //     username: req.body.username,
+            //     pass: password
+            // };
+            
+            const user = {
+                username: req.body.username,
+                pass: req.body.pass
+            };
+
+            const  userRegistered = await UserServices.registerUser( user );
 
 
-        try{
-
-            const  user = await UserServices.registerUser( req.body );
-            res.status(200).json({user})
+            res.status(200).json({userRegistered})
 
 
         } catch (err){

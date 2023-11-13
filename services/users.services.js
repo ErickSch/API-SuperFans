@@ -1,5 +1,4 @@
 const dbService = require('../config/db.js')
-const bcrypt = require('bcrypt');
 
 module.exports = {
     getAllUsers : () => {
@@ -61,12 +60,18 @@ module.exports = {
 
     registerUser : (body) => {
 
-        const { userId, username, password } = body
+        const { userId, username, pass } = body
 
-        sql = `INSERT INTO Users (username, pass) VALUES ('${username}', '${password}') RETURNING *`
+        sql = `INSERT INTO Users (username, pass) VALUES ('${username}', '${pass}') RETURNING *`
         // sql = `INSERT INTO User (userId, username, password) VALUES (${userId}, '${username}', '${password}') RETURNING *`
 
 
+        return dbService.querypromise(sql)
+    },
+    
+    userExists : (username) => {
+        sql = `SELECT * FROM users WHERE username='${username}'`
+        
         return dbService.querypromise(sql)
     },
 
