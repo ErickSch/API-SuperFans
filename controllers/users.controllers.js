@@ -83,42 +83,42 @@ module.exports = {
         //     return res.status(400).json({error: error.details[0].message})
         // }
 
-        const isEmailExist = await User.findOne({ email: req.body.email });
-        if (isEmailExist) {
-            return res.status(400).json({error: 'Email ya registrado'})
-        }
-
-        // hash contraseña
-        const salt = await bcrypt.genSalt(10);
-        const password = await bcrypt.hash(req.body.password, salt);
-
-        const user = {
-            email: req.body.email,
-            password: password
-        };
-        try {
-            const savedUser = await user.save();
-            res.json({
-                // error: null,
-                error: null,
-                data: savedUser
-            })
-        } catch (error) {
-            res.status(400).json({error})
-        }
-
-
-
-
-        // try{
-
-        //     const  user = await UserServices.postUser( req.body );
-        //     res.status(200).json({user})
-
-
-        // } catch (err){
-        //     res.status(500).json({"message": `Error al crear usuario. Err: ${err}`})
+        // const isEmailExist = await User.findOne({ email: req.body.email });
+        // if (isEmailExist) {
+        //     return res.status(400).json({error: 'Email ya registrado'})
         // }
+
+        // // hash contraseña
+        // const salt = await bcrypt.genSalt(10);
+        // const password = await bcrypt.hash(req.body.password, salt);
+
+        // const user = {
+        //     email: req.body.email,
+        //     password: password
+        // };
+        // try {
+        //     const savedUser = await user.save();
+        //     res.json({
+        //         // error: null,
+        //         error: null,
+        //         data: savedUser
+        //     })
+        // } catch (error) {
+        //     res.status(400).json({error})
+        // }
+
+
+
+
+        try{
+
+            const  user = await UserServices.postUser( req.body );
+            res.status(200).json({user})
+
+
+        } catch (err){
+            res.status(500).json({"message": `Error al crear usuario. Err: ${err}`})
+        }
     },
 
     updatePerfil : async (req, res) => {
