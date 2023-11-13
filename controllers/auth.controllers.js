@@ -54,26 +54,28 @@ module.exports = {
         
         // const user = await User.findOne({ email: req.body.email });
 
-        const username = req.params.username
-        const password = req.params.password
+        // const username = req.params.username
+        // const password = req.params.password
+        const username = req.body.username
+        const password = req.body.pass
 
         const user = {
             _id: 1,
             username: username,
-            password: password
+            pass: password
         }
         
         const userDB = {
             _id: 1,
             username: "Erick",
-            password: "123"
+            pass: "123"
         }
 
         
         if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
     
         // const validPassword = await bcrypt.compare(req.body.password, user.password);
-        const validPassword = user.password == userDB.password;
+        const validPassword = user.pass == userDB.pass;
 
         if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
         
@@ -85,7 +87,6 @@ module.exports = {
         
         
         // create token
-        console.log(process.env.TOKEN_SECRET)
         const token = jwt.sign({
             name: user.username,
             id: user._id,

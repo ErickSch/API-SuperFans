@@ -10,6 +10,7 @@ router.get('/image/:image', UserControllers.getImage)
 router.get('/recetas', UserControllers.getAllRecetas)
 router.post('/', UserControllers.registerUser)
 router.get('/recetas/:id', UserControllers.getRecetasFavoritasWId)
+router.get('/recetas/ingredientes/:id', UserControllers.getIngredientesWIdReceta)
 router.put('/perfiles/:id', UserControllers.updatePerfil)
 router.put('/perfiles/peso/:id', UserControllers.updatePesoPerfil)
 

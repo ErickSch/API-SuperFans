@@ -175,4 +175,19 @@ module.exports = {
         }
     },
 
+    getIngredientesWIdReceta : async (req, res) => {
+
+        const id = req.params.id
+
+        try{
+
+            const  ingredientes = await UserServices.getIngredientesWIdReceta( id );
+            res.json({ingredientes})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener ingredientes de la receta ${id}. Err: ${err}`})
+        }
+    },
+
 }
