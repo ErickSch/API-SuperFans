@@ -108,11 +108,9 @@ module.exports = {
         // }
 
 
-
-
         try{
 
-            const  user = await UserServices.postUser( req.body );
+            const  user = await UserServices.registerUser( req.body );
             res.status(200).json({user})
 
 
