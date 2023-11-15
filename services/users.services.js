@@ -77,7 +77,7 @@ module.exports = {
 
     getAllRecetas : () => {
 
-        sql = 'SELECT recetaname, tiempo, img FROM recetas'
+        sql = 'SELECT idreceta, recetaname, tiempo, img FROM recetas'
         return dbService.querypromise(sql)
     },
 
@@ -88,9 +88,37 @@ module.exports = {
         return dbService.querypromise(sql)
     },
     
-    getIngredientesWIdReceta : (id) => {
+    postRecetaFavorita : (idPerfil, idReceta) => {
 
-        sql = `SELECT * FROM getingr(${id})`
+        sql = `SELECT * FROM add_favorite(${idPerfil}, ${idReceta})`
+
+        return dbService.querypromise(sql)
+    },
+    
+    getIngredientesWIdReceta : (idReceta) => {
+
+        sql = `SELECT * FROM getingr(${idReceta})`
+
+        return dbService.querypromise(sql)
+    },
+
+    getPasosReceta : (idPerfil, idReceta) => {
+
+        sql = `SELECT * FROM add_favorite(${idPerfil}, ${idReceta})`
+
+        return dbService.querypromise(sql)
+    },
+
+    getPasosReceta : (idReceta) => {
+
+        sql = `SELECT * FROM getPasos(${idReceta})`
+
+        return dbService.querypromise(sql)
+    },
+
+    getRecetasWIdIngrediente : (idIngrediente) => {
+
+        sql = `SELECT * FROM findreceta(${idIngrediente})`
 
         return dbService.querypromise(sql)
     }

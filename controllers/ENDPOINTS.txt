@@ -1,0 +1,187 @@
+--------------------------------------------
+getIngredientesWIdReceta
+
+../users/recetas/ingredientes/:idReceta
+"""
+Te da los ingredientes de una receta con el id de la receta
+"""
+Metodo: GET
+
+Params: idReceta
+
+Prueba: idReceta=59
+
+Body: 
+{
+    idPerfil: ...,
+    idReceta: ...
+}
+
+Output:
+{
+  "ingredientes": [
+    {
+      "ingrediente": "Salt",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Garlic",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Lime",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Butter",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Hot sauce",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Chicken",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Greek Yogurt",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Olive oil",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Black Pepper",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Coleslaw Mix",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Tortilla",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Green Onion",
+      "lsm": null,
+      "idreceta": 59
+    },
+    {
+      "ingrediente": "Blue cheese",
+      "lsm": null,
+      "idreceta": 59
+    }
+  ]
+}
+--------------------------------------------
+postRecetaFavorita
+
+../users/recetas/favorita
+"""
+Agregar una receta a favoritos de un perfil 
+con el id del perfil y el id de la receta.
+"""
+Metodo: POST
+
+Params: None
+
+Prueba: idPerfil=1, idReceta=59
+
+Body: 
+{
+    idPerfil: ...,
+    idReceta: ...
+}
+
+Output:
+
+{
+  no tiene output
+}
+
+--------------------------------------------
+getPasosReceta
+
+../users/recetas/pasos/:idReceta
+"""
+Te da pasos de una receta con su id
+"""
+Metodo: GET
+
+Params: idReceta
+
+Body: None
+
+Prueba: idReceta=59
+
+Output:
+
+{
+  "pasosReceta": [
+    {
+      "instruccion": "Microwave the butter in a large microwave-safe bowl in 4 to 6 (10-second) bursts until just melted.",
+      "idreceta": 59
+    },
+    {
+      "instruccion": "Add the hot sauce and garlic powder and whisk until combined. Add the shredded chicken and toss to coat. Alternatively, melt the butter in a small saucepan over medium-low heat. Turn off the heat and add the hot sauce and garlic powder, then transfer to a large bowl and combine with the chicken.",
+      "idreceta": 59
+    },
+    {
+      "instruccion": "Place the Greek yogurt or sour cream, lime juice, olive oil, salt, and pepper in a large bowl and whisk to combine. Add the coleslaw mix and toss to coat.",
+      "idreceta": 59
+    },
+    {
+      "instruccion": "Stack the tortillas on a microwave-safe plate and cover with a damp paper towel. Microwave until warm, 30 to 45 seconds. Wrap the stack in a clean kitchen towel or aluminum foil to keep warm until ready to use.",
+      "idreceta": 59
+    },
+    {
+      "instruccion": "To assemble the tacos, top the warmed tortillas with coleslaw. Top with the buffalo chicken and garnish with the scallions and blue cheese.",
+      "idreceta": 59
+    }
+  ]
+}
+
+--------------------------------------------
+getRecetasWIdIngrediente
+
+../users/recetas/ingrediente/:idIngrediente
+"""
+Te da recetas con el id de un ingrediente
+"""
+Metodo: GET
+
+Params: idIngrediente
+
+Body: None
+
+Prueba: idIngrediente=122
+
+Output:
+
+{
+  "recetas": [
+    {
+      "recetaname": "Buffalo Chicken Tacos",
+      "img": "tacos.jpg",
+      "calories": 753,
+      "tiempo": 15
+    }
+  ]
+}
+
+
+------------------------------------------------

@@ -162,11 +162,11 @@ module.exports = {
 
     getRecetasFavoritasWId : async (req, res) => {
 
-        const id = req.params.id
+        const idPerfil = req.params.idPerfil
 
         try{
 
-            const  favoritas = await UserServices.getRecetasFavoritasWId(id);
+            const  favoritas = await UserServices.getRecetasFavoritasWId(idPerfil);
             res.json({favoritas})
 
 
@@ -177,16 +177,61 @@ module.exports = {
 
     getIngredientesWIdReceta : async (req, res) => {
 
-        const id = req.params.id
+        const idReceta = req.params.idReceta
 
         try{
 
-            const  ingredientes = await UserServices.getIngredientesWIdReceta( id );
+            const  ingredientes = await UserServices.getIngredientesWIdReceta( idReceta );
             res.json({ingredientes})
 
 
         } catch (err){
-            res.json({"message": `Error al obtener ingredientes de la receta ${id}. Err: ${err}`})
+            res.json({"message": `Error al obtener ingredientes de la receta ${idReceta}. Err: ${err}`})
+        }
+    },
+
+        // Crear usuario
+    postRecetaFavorita : async (req, res) => {
+
+        try{
+            const { idPerfil, idReceta } = req.body
+            const  recetaAgregada = await UserServices.postRecetaFavorita( idPerfil, idReceta );
+
+            res.status(200).json({recetaAgregada})
+
+
+        } catch (err){
+            res.status(500).json({"message": `Error al agregar receta favorita. Err: ${err}`})
+        }
+    },
+
+    getPasosReceta : async (req, res) => {
+
+        const idReceta = req.params.idReceta
+
+        try{
+
+            const  pasosReceta = await UserServices.getPasosReceta( idReceta );
+            res.json({pasosReceta})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener pasos de receta ${idReceta}. Err: ${err}`})
+        }
+    },
+
+    getRecetasWIdIngrediente : async (req, res) => {
+
+        const idIngrediente = req.params.idIngrediente
+
+        try{
+
+            const  recetas = await UserServices.getRecetasWIdIngrediente( idIngrediente );
+            res.json({recetas})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener recetas de ingrediente ${idIngrediente}. Err: ${err}`})
         }
     },
 
