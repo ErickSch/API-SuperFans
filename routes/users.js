@@ -9,7 +9,7 @@ router.get('/perfiles', UserControllers.getAllPerfiles)
 router.get('/perfiles/:username/:password', UserControllers.getPerfilWUser)
 router.get('/perfiles/:id', UserControllers.getPerfilWId)
 
-router.get('/image/:image', UserControllers.getImage)
+router.get('/image/:nombreImagen', UserControllers.getImage)
 
 router.get('/recetas', UserControllers.getAllRecetas)
 router.get('/recetas/favoritas/:idPerfil', UserControllers.getRecetasFavoritasWId)

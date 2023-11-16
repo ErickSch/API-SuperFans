@@ -127,18 +127,19 @@ module.exports = {
 
     getImage : async (req, res) => {
 
-        const options = {
-            root: path.join(__dirname)
-        }
-        const fileName = 'images/tacos.jpg';
+        const imageName = req.params.nombreImagen
 
-        const imageName = req.params.image
+        const options = {
+            root: path.join(__dirname, '..', 'static', 'images')
+        }
+        // const fileName = 'images/tacos.jpg';
+
 
         try{
 
             // const  image = await UserServices.getImage(imageName);
             // res.json({perfil})
-            res.sendFile(fileName, options)
+            res.sendFile(imageName, options)
 
 
         } catch (err){

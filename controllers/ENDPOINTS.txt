@@ -188,6 +188,34 @@ Output:
 --------------------------------------------
 getRecetasWIdIngrediente
 
+../users/image/:nombreImagen
+"""
+Te da recetas con el id de un ingrediente
+"""
+Metodo: GET
+
+Params: idIngrediente
+
+Body: None
+
+Prueba: idIngrediente=122
+
+Output:
+
+{
+  "recetas": [
+    {
+      "recetaname": "Buffalo Chicken Tacos",
+      "img": "tacos.jpg",
+      "calories": 753,
+      "tiempo": 15
+    }
+  ]
+}
+
+--------------------------------------------
+getRecetasWIdIngrediente
+
 ../users/recetas/ingrediente/:idIngrediente
 """
 Te da recetas con el id de un ingrediente
