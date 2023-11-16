@@ -1,4 +1,34 @@
 --------------------------------------------
+getRecetasFavoritasWId
+
+../users/recetas/favoritas/:idPerfil
+"""
+Te da los ingredientes de una receta con el id de la receta
+"""
+Metodo: GET
+
+Params: idPerfil
+
+Prueba: idPerfil=1
+
+Body: 
+{
+  "favoritas": [
+    {
+      "recetaname": "Buffalo Chicken Tacos",
+      "img": "tacos.jpg",
+      "calories": 753,
+      "tiempo": 15
+    },
+    {
+      "recetaname": "Buffalo Chicken Tacos",
+      "img": "tacos.jpg",
+      "calories": 753,
+      "tiempo": 15
+    }
+  ]
+}
+--------------------------------------------
 getIngredientesWIdReceta
 
 ../users/recetas/ingredientes/:idReceta
