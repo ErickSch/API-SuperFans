@@ -214,31 +214,24 @@ Output:
 }
 
 --------------------------------------------
-getRecetasWIdIngrediente
+getImagen
 
-../users/recetas/ingrediente/:idIngrediente
+../users//imagen/:nombreImagen
 """
-Te da recetas con el id de un ingrediente
+Te da la imagen con el nombre de la imagen
 """
 Metodo: GET
 
-Params: idIngrediente
+Params: nombreImagen
 
 Body: None
 
-Prueba: idIngrediente=122
+Prueba: nombreImagen=Mac.jpg
 
 Output:
 
 {
-  "recetas": [
-    {
-      "recetaname": "Buffalo Chicken Tacos",
-      "img": "tacos.jpg",
-      "calories": 753,
-      "tiempo": 15
-    }
-  ]
+ Te muestra la imagen
 }
 
 

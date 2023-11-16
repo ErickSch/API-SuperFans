@@ -125,7 +125,7 @@ module.exports = {
         }
     },
 
-    getImage : async (req, res) => {
+    getImagen : async (req, res) => {
 
         const imageName = req.params.nombreImagen
 
