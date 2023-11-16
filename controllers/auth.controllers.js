@@ -88,7 +88,7 @@ module.exports = {
         
         // create token
         const token = jwt.sign({
-            name: user.username,
+            // name: user.username,
             id: user._id,
             exp: Date.now() + 60 * 1000
         }, process.env.TOKEN_SECRET)
