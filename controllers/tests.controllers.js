@@ -1,5 +1,9 @@
 const TestsServices = require('../services/tests.services.js')
-const path = require('path');
+const path = require('path')
+// const prisma = require('../config/db.js')
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
 
 module.exports = {
     // getAllPerfiles : async (req, res, next) => {
@@ -32,6 +36,18 @@ module.exports = {
         }
     },
 
+    getUsersPrisma : async (req, res) => {
+        // const userId = req.params.userId
+
+        try{
+            // const  user = await TestsServices.getPerfilWId(id);
+            const  usuarios = await prisma.users.findMany();
+            res.json({usuarios})
+
+        } catch (err){
+            res.json({"message": `Error al obtener usuarios. Err: ${err}`})
+        }
+    }
     
 
 

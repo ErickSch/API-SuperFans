@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DBConfigLink")
+}
+
+model enfermedad {
+  enfid      Int         @id
+  enfermedad String?     @db.VarChar(20)
+  saludenfe  saludenfe[]
+}
+
+model favoritos {
+  perfilid   Int?
+  recetaid   Int?
+  idfavorito Int      @id @default(autoincrement())
+  perfil     perfil?  @relation(fields: [perfilid], references: [idperfil], onDelete: NoAction, onUpdate: NoAction, map: "fk_perfil_fav")
+  recetas    recetas? @relation(fields: [recetaid], references: [idreceta], onDelete: NoAction, onUpdate: NoAction, map: "fk_rec_fav")
+}
+
+model ingrec {
+  recetaid       Int?
+  ingredientesid Int?
+  ingrecid       Int           @id @default(autoincrement())
+  ingredientes   ingredientes? @relation(fields: [ingredientesid], references: [ingredienteid], onDelete: NoAction, onUpdate: NoAction, map: "fk_ingrec_ing")
+  recetas        recetas?      @relation(fields: [recetaid], references: [idreceta], onDelete: NoAction, onUpdate: NoAction, map: "fk_ingrec_rec")
+}
+
+model ingredientes {
+  ingrediente   String?  @db.VarChar(40)
+  ingredienteid Int      @id @default(autoincrement())
+  lsm           String?  @db.VarChar(50)
+  ingrec        ingrec[]
+}
+
+model macros {
+  macrosid Int      @id @default(autoincrement())
+  protein  Float?
+  lipids   Float?
+  carbs    Float?
+  recetaid Int?
+  calories Int?
+  recetas  recetas? @relation(fields: [recetaid], references: [idreceta], onDelete: NoAction, onUpdate: NoAction, map: "fk_recipe_macros")
+}
+
+model pasos {
+  instruccion String?  @db.VarChar(500)
+  recetaid    Int?
+  pasosid     Int      @id @default(autoincrement())
+  recetas     recetas? @relation(fields: [recetaid], references: [idreceta], onDelete: NoAction, onUpdate: NoAction, map: "fk_perfil_paso")
+}
+
+model perfil {
+  fname     String?     @db.VarChar(20)
+  lname     String?     @db.VarChar(20)
+  llname    String?     @db.VarChar(20)
+  age       Int?
+  gender    Boolean?
+  height    Float?
+  weight    Float?
+  iduser    Int         @default(autoincrement())
+  idperfil  Int         @id @default(autoincrement())
+  favoritos favoritos[]
+  users     users       @relation(fields: [iduser], references: [iduser], onDelete: NoAction, onUpdate: NoAction, map: "fk_perfil_iduser")
+}
+
+model recetas {
+  recetaname String?     @db.VarChar(30)
+  idreceta   Int         @id @default(autoincrement())
+  img        String?     @db.VarChar(100)
+  tiempo     Int?
+  favoritos  favoritos[]
+  ingrec     ingrec[]
+  macros     macros[]
+  pasos      pasos[]
+}
+
+model saludenfe {
+  saludenfid Int         @id
+  perfilid   Int?
+  enfid      Int?
+  enfermedad enfermedad? @relation(fields: [enfid], references: [enfid], onDelete: NoAction, onUpdate: NoAction, map: "fk_saludenfe_enf")
+}
+
+model users {
+  username String?  @db.VarChar(20)
+  pass     String?  @db.VarChar(100)
+  iduser   Int      @id @default(autoincrement())
+  perfil   perfil[]
+}
