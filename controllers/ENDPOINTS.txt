@@ -3,7 +3,7 @@ getRecetasFavoritasWId
 
 ../users/recetas/favoritas/:idPerfil
 """
-Te da los ingredientes de una receta con el id de la receta
+Te da las recetas favoritas de un perfil en base a su id
 """
 Metodo: GET
 
