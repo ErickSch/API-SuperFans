@@ -216,7 +216,7 @@ Output:
 --------------------------------------------
 getImagen
 
-../users//imagen/:nombreImagen
+../users/imagen/:nombreImagen
 """
 Te da la imagen con el nombre de la imagen
 """
