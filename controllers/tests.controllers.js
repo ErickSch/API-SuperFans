@@ -47,8 +47,28 @@ module.exports = {
         } catch (err){
             res.json({"message": `Error al obtener usuarios. Err: ${err}`})
         }
-    }
+    },
     
+    getUserPrisma : async (req, res) => {
+        // const userId = req.params.userId
+
+        try{
+            // const  user = await TestsServices.getPerfilWId(id);
+            const { username } = req.body
+            // const  usuarios = await prisma.users.findFirst({
+            //     where: {
+            //         username: username
+            //     }
+            // });
+            const  usuarios = await prisma.users.findFirst({
+                where: {username: '{contains: "E"}'}
+            });
+            res.json({usuarios})
+
+        } catch (err){
+            res.json({"message": `Error al obtener usuario. Err: ${err}`})
+        }
+    }
 
 
 

@@ -15,6 +15,20 @@ const verifyToken = (req, res, next) => {
     }
 }
 
+// Documentación de jwt-cracker
+// https://lmammino.github.io/jwt-cracker/
+
+// Listas de contraseñas
+// https://github.com/danielmiessler/SecLists/tree/master
+
+// npm install --global jwt-cracker
+
+// jwt-cracker -t eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ -d darkweb2017-top10000.txt
+
+
 
 
 module.exports = verifyToken;
+
+
+
