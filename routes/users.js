@@ -17,6 +17,8 @@ router.get('/recetas/ingredientes/:idReceta', UserControllers.getIngredientesWId
 router.post('/recetas/favorita', UserControllers.postRecetaFavorita)
 router.get('/recetas/pasos/:idReceta', UserControllers.getPasosReceta)
 router.get('/recetas/ingrediente/:idIngrediente', UserControllers.getRecetasWIdIngrediente)
+router.post('/recetas/listaingredientes', UserControllers.postListaIngredientes)
+
 
 router.put('/perfiles/:id', UserControllers.updatePerfil)
 router.put('/perfiles/peso/:id', UserControllers.updatePesoPerfil)

@@ -236,4 +236,19 @@ module.exports = {
         }
     },
 
+    postListaIngredientes : async (req, res) => {
+
+        try{
+            const { listaIngredientes } = req.body
+            const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
+            // console.log(listaIngredientes)
+            // res.status(200).json({listaIngredientes})
+            res.status(200).json(listaIngredientesPost)
+
+
+        } catch (err){
+            res.status(500).json({"message": `Error al agregar receta favorita. Err: ${err}`})
+        }
+    },
+
 }
