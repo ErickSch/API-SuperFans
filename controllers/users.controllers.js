@@ -173,7 +173,7 @@ module.exports = {
         }
     },
 
-
+// Prueba
     getAllRecetas : async (req, res) => {
         try{
 
@@ -239,6 +239,7 @@ module.exports = {
         }
     },
 
+    // Usa funcion
     getPasosReceta : async (req, res) => {
 
         const idReceta = req.params.idReceta
@@ -254,6 +255,7 @@ module.exports = {
         }
     },
 
+    // Usa funcion
     getRecetasWIdIngrediente : async (req, res) => {
 
         const idIngrediente = req.params.idIngrediente
