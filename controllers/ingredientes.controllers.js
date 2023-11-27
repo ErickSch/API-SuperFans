@@ -5,7 +5,9 @@ module.exports = {
     getAllIngredientes : async (req, res, next) => {
         try{
 
-            const  ingredientes = await IngredientesServices.getAllIngredientes();
+            // const  ingredientes = await IngredientesServices.getAllIngredientes();
+            const  ingredientes = await prisma.ingredientes.findMany();
+
             res.json({ingredientes})
 
 
