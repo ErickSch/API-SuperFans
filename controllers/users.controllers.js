@@ -16,6 +16,37 @@ module.exports = {
         }
 
     },
+
+    getUserWIdUser : async (req, res) => {
+
+        const idUser = req.params.idUser
+
+        try{
+
+            const  user = await UserServices.getPerfilWId(idUser);
+            res.json({user})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener el usuario. Err: ${err}`})
+        }
+    },
+
+    getUserWUsernameUser : async (req, res) => {
+
+        const username = req.params.username
+
+        try{
+
+            const  user = await UserServices.getUserWUsernameUser(username);
+            res.json({user})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener el usuario. Err: ${err}`})
+        }
+    },
+
     getAllPerfiles : async (req, res, next) => {
         try{
 

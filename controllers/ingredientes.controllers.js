@@ -12,7 +12,7 @@ module.exports = {
         } catch (err){
             res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
         }
-
+        
 
     }
 }

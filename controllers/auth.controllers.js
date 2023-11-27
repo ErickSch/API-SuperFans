@@ -65,11 +65,13 @@ module.exports = {
             pass: password
         }
         
-        const userDB = {
-            _id: 1,
-            username: "Erick",
-            pass: "123"
-        }
+        // const userDB = {
+        //     _id: 1,
+        //     username: "Erick",
+        //     pass: "123"
+        // }
+
+       const  userDB =  await UserServices.getUserWUsernameUser(username);
 
         
         if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
