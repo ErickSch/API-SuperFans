@@ -1,11 +1,11 @@
 const dbService = require('../config/db.js')
 
 module.exports = {
-    getAllUsers : () => {
+    // getAllUsers : () => {
 
-        sql = 'SELECT * FROM Users'
-        return dbService.querypromise(sql)
-    },
+    //     sql = 'SELECT * FROM Users'
+    //     return dbService.querypromise(sql)
+    // },
 
     getAllPerfiles : () => {
 

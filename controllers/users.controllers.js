@@ -1,58 +1,54 @@
+// https://www.prisma.io/docs/concepts/components/prisma-client/crud#update
+
 const UserServices = require('../services/users.services.js')
 const path = require('path');
 const bcrypt = require('bcrypt');
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
 
 
 module.exports = {
-    getAllUsers : async (req, res, next) => {
+    // ENDPOINT EXTRA
+    getAllUsers : async (req, res) => {
         try{
-
-            const  users = await UserServices.getAllUsers();
-            res.json({users})
-
+            const  usuarios = await prisma.users.findMany();
+            res.json({usuarios})
 
         } catch (err){
-            res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
+            res.json({"message": `Error al obtener usuarios. Err: ${err}`})
         }
 
     },
+    // ENDPOINT EXTRA
     getAllPerfiles : async (req, res, next) => {
         try{
 
-            const  perfiles = await UserServices.getAllPerfiles();
+            const  perfiles = await prisma.perfil.findMany();
             res.json({perfiles})
-
-
+            
+            
         } catch (err){
-            res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
+            res.json({"message": `Error al obtener los perfiles. Err: ${err}`})
         }
-
-
+        
+        
     },
-
-    getPerfilWUser : async (req, res) => {
-
-        const username = req.params.username
-        const password = req.params.password
-
-        try{
-
-            const  perfil = await UserServices.getPerfilWUser(username, password);
-            res.json({perfil})
-
-
-        } catch (err){
-            res.json({"message": `Error al obtener el perfil. Err: ${err}`})
-        }
-    },
-
-    getPerfilWId : async (req, res) => {
-
+    
+    getPerfilWPerfilId : async (req, res) => {
+        
         const id = req.params.id
-
+        
+        // const username = req.params.username
+        // const password = req.params.password
+        
         try{
-
-            const  perfil = await UserServices.getPerfilWId(id);
+            
+            const  perfil = await prisma.perfil.findUnique({
+                where: {
+                    idperfil: parseInt(id),
+                },
+            });
             res.json({perfil})
 
 
@@ -60,8 +56,25 @@ module.exports = {
             res.json({"message": `Error al obtener el perfil. Err: ${err}`})
         }
     },
+
+    // getPerfilWUserId : async (req, res) => {
+
+    //     const id = req.params.id
+
+    //     try{
+
+    //         const  perfil = await UserServices.getPerfilWId(id);
+    //         res.json({perfil})
+
+
+    //     } catch (err){
+    //         res.json({"message": `Error al obtener el perfil. Err: ${err}`})
+    //     }
+    // },
 
     // Crear usuario
+    // Falta implementar prisma
+
     registerUser : async (req, res) => {
 
         createUser : try{
@@ -99,11 +112,22 @@ module.exports = {
         }
     },
 
-    updatePerfil : async (req, res) => {
+    // Poner que mande todo el perfil en la peticion
+//-------- Cheacar (hacerlo que actualice todo el perfil)
+
+    updatePerfilNameWIdPerfil : async (req, res) => {
 
         try{
-            const id = req.params.id
-            const  perfil = await UserServices.updatePerfilWId( req.body, id);
+            const idPerfil = req.params.id
+            // const  perfil = await UserServices.updatePerfilWId( req.body, id);
+            const perfil = await prisma.perfil.update({
+                where: {
+                    idperfil: parseInt(idPerfil),
+                },
+                data: {
+                    fname: req.body.fname
+                }
+            })
             res.status(200).json({perfil})
 
 
@@ -112,6 +136,7 @@ module.exports = {
         }
     },
 
+//-------- Cheacar (juntar con uno que actualice todo el perfil)
     updatePesoPerfil : async (req, res) => {
 
         try{
@@ -124,6 +149,8 @@ module.exports = {
             res.status(500).json({"message": `Error actualizar peso. Err: ${err}`})
         }
     },
+
+//-------- Cheacar (Si se puede hacer algo con prisma)
 
     getImage : async (req, res) => {
 
@@ -146,21 +173,26 @@ module.exports = {
         }
     },
 
-    getAllRecetas : async (req, res, next) => {
+
+    getAllRecetas : async (req, res) => {
         try{
 
-            const  recetas = await UserServices.getAllRecetas();
+            // const  recetas = await UserServices.getAllRecetas();
+            const  recetas = await prisma.recetas.findMany();
             res.json({recetas})
 
 
         } catch (err){
-            res.json({"message": `Error al obtener los recetas. Err: ${err}`})
+            res.json({"message": `Error al obtener las recetas. Err: ${err}`})
         }
 
 
     },
 
-    getRecetasFavoritasWId : async (req, res) => {
+    // users/recetas/favoritas/:idPerfil
+    // getRecetasFavoritasWId usa una funcion
+//----- Checar
+    getRecetasFavoritasWIdPerfil : async (req, res) => {
 
         const idPerfil = req.params.idPerfil
 
@@ -175,6 +207,8 @@ module.exports = {
         }
     },
 
+    // getIngredientesWIdReceta
+//------- Checar porque usa una funcion    
     getIngredientesWIdReceta : async (req, res) => {
 
         const idReceta = req.params.idReceta
