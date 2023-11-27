@@ -14,13 +14,6 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
-    getUserWUsernameUser : (username) => {
-
-        sql = `SELECT * FROM Users WHERE username = '${username}'`
-
-        return dbService.querypromise(sql)
-    },
-
     getAllPerfiles : () => {
 
         sql = 'SELECT * FROM Perfil'

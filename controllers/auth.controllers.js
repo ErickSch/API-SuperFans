@@ -1,4 +1,5 @@
 // const IngredientesServices = require('../services/auth.js')
+const authServices = require('../services/auth.services.js');
 const AuthServices = require('../services/auth.services.js')
 const jwt = require("jsonwebtoken")
 
@@ -59,6 +60,9 @@ module.exports = {
         const username = req.body.username
         const password = req.body.pass
 
+        // console.log(username)
+        // console.log(password)
+
         const user = {
             _id: 1,
             username: username,
@@ -71,13 +75,24 @@ module.exports = {
         //     pass: "123"
         // }
 
-       const  userDB =  await UserServices.getUserWUsernameUser(username);
+       var userDB = await authServices.getUserWUsernameUser(username);
+       var userDB = userDB[0];
+       //    console.log(userDB[0].username)
+       
+       if (!userDB) return res.status(400).json({ error: 'Nombre de usuario no valido' })
+       const validUsername = user.username == userDB.username;
+       if (!validUsername) return res.status(400).json({ error: 'Nombre de usuario no valido' })
 
-        
+       console.log(userDB.username)
+
+       console.log(userDB.pass)
+
         if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
     
         // const validPassword = await bcrypt.compare(req.body.password, user.password);
         const validPassword = user.pass == userDB.pass;
+        // console.log(user.pass)
+        // console.log(userDB.pass)
 
         if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
         
