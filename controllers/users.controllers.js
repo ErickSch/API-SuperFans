@@ -24,12 +24,12 @@ module.exports = {
 
         const idUser = req.params.idUser
 
+        if(isNaN(Number(idUser))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
         
         try{
             
-            if(isNaN(Number(idUser))) {
-                return res.status(400).json({ err: "Id en formato incorrecto"})
-            }
 
             const  user = await UserServices.getPerfilWId(idUser);
             res.json({user})
@@ -88,6 +88,10 @@ module.exports = {
     getPerfilWId : async (req, res) => {
 
         const id = req.params.id
+
+        if(isNaN(Number(id))) {
+            return res.status(400).json({ err: "Id no válido"})
+        }
 
         try{
 
@@ -157,6 +161,33 @@ module.exports = {
         }
     },
 
+
+    updateAlturaPerfil : async (req, res) => {
+
+        try{
+            const id = req.params.id
+            const  perfil = await UserServices.updatePerfilWId( req.body, id);
+            res.status(200).json({perfil})
+
+
+        } catch (err){
+            res.status(500).json({"message": `Error actualizar nombre. Err: ${err}`})
+        }
+    },
+
+    updatePesoPerfil : async (req, res) => {
+
+        try{
+            const id = req.params.id
+            const weight = await UserServices.updatePesoPerfilWId( req.body, id);
+            res.status(200).json({weight})
+
+
+        } catch (err){
+            res.status(500).json({"message": `Error actualizar peso. Err: ${err}`})
+        }
+    },
+
     updatePesoPerfil : async (req, res) => {
 
         try{
@@ -176,7 +207,9 @@ module.exports = {
 
         const options = {
             root: path.join(__dirname, '..', 'static', 'images')
+            // root: 'static/images'
         }
+        console.log(path.join(__dirname, '..', 'static', 'images'))
         // const fileName = 'images/tacos.jpg';
 
 
