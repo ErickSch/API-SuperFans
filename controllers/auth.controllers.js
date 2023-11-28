@@ -54,14 +54,13 @@ module.exports = {
         // if (error) return res.status(400).json({ error: error.details[0].message })
         
         // const user = await User.findOne({ email: req.body.email });
-
+        
         // const username = req.params.username
         // const password = req.params.password
         const username = req.body.username
         const password = req.body.pass
 
-        // console.log(username)
-        // console.log(password)
+        if (!username) return res.status(400).json({ error: 'Ingresa un nombre de usuario' })
 
         const user = {
             _id: 1,
