@@ -11,7 +11,9 @@ router.get('/perfiles', UserControllers.getAllPerfiles)
 router.get('/perfiles/:username/:password', UserControllers.getPerfilWUser)
 router.get('/perfiles/:id', UserControllers.getPerfilWId)
 router.put('/perfiles/:id', UserControllers.updatePerfil)
-router.put('/perfiles/peso/:id', UserControllers.updatePesoPerfil)
+router.put('/perfiles/altura/:id', UserControllers.updateAlturaPerfilWId)
+router.put('/perfiles/peso/:id', UserControllers.updatePesoPerfilWId)
+router.put('/perfiles/edad/:id', UserControllers.updateEdadPerfilWId)
 
 router.get('/imagen/:nombreImagen', UserControllers.getImagen)
 

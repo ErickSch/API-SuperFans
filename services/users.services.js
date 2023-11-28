@@ -46,12 +46,34 @@ module.exports = {
         return dbService.querypromise(sql)
     },
 
+    updateAlturaPerfilWId : (body, id) => {
+
+        const { height } = body
+
+        sql = `UPDATE Perfil
+        SET height = ${height}
+        WHERE idperfil = ${id}`
+
+        return dbService.querypromise(sql)
+    },
+
     updatePesoPerfilWId : (body, id) => {
 
         const { weight } = body
 
         sql = `UPDATE Perfil
         SET weight = ${weight}
+        WHERE idperfil = ${id}`
+
+        return dbService.querypromise(sql)
+    },
+    
+    updateEdadPerfilWId : (body, id) => {
+
+        const { age } = body
+
+        sql = `UPDATE Perfil
+        SET age = ${age}
         WHERE idperfil = ${id}`
 
         return dbService.querypromise(sql)

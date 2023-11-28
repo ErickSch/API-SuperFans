@@ -60,7 +60,7 @@ Body:
 }
 --------------------------------------------
 getIngredientesWIdReceta
-
+  
 ../users/recetas/ingredientes/:idReceta
 """
 Te da los ingredientes de una receta con el id de la receta

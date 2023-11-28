@@ -24,6 +24,7 @@ module.exports = {
 
         const idUser = req.params.idUser
 
+
         if(isNaN(Number(idUser))) {
             return res.status(400).json({ err: "Id en formato incorrecto"})
         }
@@ -49,13 +50,13 @@ module.exports = {
             const  user = await UserServices.getUserWUsernameUser(username);
             res.json({user})
 
-
         } catch (err){
             res.json({"message": `Error al obtener el usuario. Err: ${err}`})
         }
     },
 
     getAllPerfiles : async (req, res, next) => {
+    
         try{
 
             const  perfiles = await UserServices.getAllPerfiles();
@@ -149,9 +150,13 @@ module.exports = {
     },
 
     updatePerfil : async (req, res) => {
+        const id = req.params.id
+
+        if(isNaN(Number(id))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
 
         try{
-            const id = req.params.id
             const  perfil = await UserServices.updatePerfilWId( req.body, id);
             res.status(200).json({perfil})
 
@@ -162,12 +167,16 @@ module.exports = {
     },
 
 
-    updateAlturaPerfil : async (req, res) => {
+    updateAlturaPerfilWId : async (req, res) => {
+        const id = req.params.id
+
+        if(isNaN(Number(id))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
 
         try{
-            const id = req.params.id
-            const  perfil = await UserServices.updatePerfilWId( req.body, id);
-            res.status(200).json({perfil})
+            const  height = await UserServices.updateAlturaPerfilWId( req.body, id);
+            res.status(200).json({height})
 
 
         } catch (err){
@@ -175,10 +184,14 @@ module.exports = {
         }
     },
 
-    updatePesoPerfil : async (req, res) => {
+    updatePesoPerfilWId : async (req, res) => {
+        const id = req.params.id
+
+        if(isNaN(Number(id))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
 
         try{
-            const id = req.params.id
             const weight = await UserServices.updatePesoPerfilWId( req.body, id);
             res.status(200).json({weight})
 
@@ -187,13 +200,17 @@ module.exports = {
             res.status(500).json({"message": `Error actualizar peso. Err: ${err}`})
         }
     },
+    
+    updateEdadPerfilWId : async (req, res) => {
+        const id = req.params.id
 
-    updatePesoPerfil : async (req, res) => {
+        if(isNaN(Number(id))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
 
         try{
-            const id = req.params.id
-            const weight = await UserServices.updatePesoPerfilWId( req.body, id);
-            res.status(200).json({weight})
+            const age = await UserServices.updateEdadPerfilWId( req.body, id);
+            res.status(200).json({age})
 
 
         } catch (err){
@@ -213,7 +230,6 @@ module.exports = {
 
 
         try{
-
             // const  image = await UserServices.getImage(imageName);
             // res.json({perfil})
             res.sendFile(imageName, options)
@@ -224,7 +240,7 @@ module.exports = {
         }
     },
 
-    getAllRecetas : async (req, res, next) => {
+    getAllRecetas : async (req, res) => {
         try{
 
             const  recetas = await UserServices.getAllRecetas();
@@ -242,6 +258,10 @@ module.exports = {
 
         const idPerfil = req.params.idPerfil
 
+        if(isNaN(Number(idPerfil))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
+
         try{
 
             const  favoritas = await UserServices.getRecetasFavoritasWId(idPerfil);
@@ -255,16 +275,24 @@ module.exports = {
 
     deleteRecetaFavorita : async (req, res) => {
 
-        const {idPerfil, idReceta} = req.body
+        const { idPerfil, idReceta } = req.body
+        console.log(req.body)
+        console.log(idPerfil)
+        console.log(idReceta)
+        // idPerfil = parseInt(idPerfil)
+        // idReceta = parseInt(idReceta)
+
+        // if(isNaN(Number(idPerfil)) || isNaN(Number(idReceta))) {
+        //     return res.status(400).json({ err: "Id en formato incorrecto"})
+        // }
 
         try{
 
             const  deleteFavoritas = await UserServices.deleteRecetaFavorita(idPerfil, idReceta);
             res.json({deleteFavoritas})
 
-
         } catch (err){
-            res.json({"message": `Error al obtener el recetas favoritas. Err: ${err}`})
+            res.json({"message": `Error al obtener recetas favoritas. Err: ${err}`})
         }
     },
 
@@ -273,6 +301,10 @@ module.exports = {
     getIngredientesWIdReceta : async (req, res) => {
 
         const idReceta = req.params.idReceta
+
+        if(isNaN(Number(idReceta))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
 
         try{
 
@@ -287,9 +319,14 @@ module.exports = {
 
         // Crear usuario
     postRecetaFavorita : async (req, res) => {
+        const { idPerfil, idReceta } = req.body
+        console.log(req.body)
+
+        // if(isNaN(Number(idPerfil)) || isNaN(Number(idReceta))) {
+        //     return res.status(400).json({ err: "Id en formato incorrecto"})
+        // }
 
         try{
-            const { idPerfil, idReceta } = req.body
             const  recetaAgregada = await UserServices.postRecetaFavorita( idPerfil, idReceta );
 
             res.status(200).json({recetaAgregada})
