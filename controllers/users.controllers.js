@@ -288,6 +288,7 @@ module.exports = {
 
         try{
             const listaIngredientes = req.body
+            // const listaIngredientes = ["Banana", "Huevo"]
             
             console.log(listaIngredientes)
             const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
