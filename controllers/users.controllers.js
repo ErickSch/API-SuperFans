@@ -2,6 +2,9 @@ const UserServices = require('../services/users.services.js')
 const path = require('path');
 const bcrypt = require('bcrypt');
 
+const onlyLettersPattern = /^[A-Za-z]+$/;
+
+
 
 module.exports = {
     getAllUsers : async (req, res, next) => {
@@ -96,6 +99,12 @@ module.exports = {
     registerUser : async (req, res) => {
 
         createUser : try{
+
+
+            if(!req.body.username.match(onlyLettersPattern)){
+              return res.status(400).json({ err: "No special characters and no numbers, please!"})
+            }
+
             const  userExists = await UserServices.userExists( req.body.username );
 
             // Validar que el username no ha sido registrado
@@ -288,7 +297,7 @@ module.exports = {
 
         try{
             const listaIngredientes = req.body
-            // const listaIngredientes = ["Banana", "Huevo"]
+            // const listaIngredientes = ["Platano", "salt"]
             
             console.log(listaIngredientes)
             const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );

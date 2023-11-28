@@ -17,7 +17,6 @@ updatePerfil -> PUT
 updatePesoPerfil -> PUT
 getImagen
 getAllRecetas
-getRecetasFavoritasWId
 postRecetaFavorita
 deleteRecetaFavorita
 getIngredientesWIdReceta

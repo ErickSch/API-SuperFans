@@ -3,33 +3,33 @@ const dbService = require('../config/db.js')
 module.exports = {
     getAllUsers : () => {
 
-        sql = 'SELECT * FROM Users'
+        sql = 'SELECT username, pass, iduser FROM Users'
         return dbService.querypromise(sql)
     },
 
     getUserWIdUser : (id) => {
 
-        sql = `SELECT * FROM Users WHERE idUser = ${id}`
+        sql = `SELECT username, pass, iduser FROM Users WHERE idUser = ${id}`
 
         return dbService.querypromise(sql)
     },
 
     getAllPerfiles : () => {
 
-        sql = 'SELECT * FROM Perfil'
+        sql = 'SELECT fname, lname, llname, age, gender, height, weight, iduser, idperfil FROM Perfil'
         return dbService.querypromise(sql)
     },
 
     getPerfilWUser : (username, password) => {
 
-        sql = `SELECT * FROM getperfil('${username}', '${password}')`
+        sql = `SELECT fname, lname, llname, age, gender, height, weight, iduser, idperfil FROM getperfil('${username}', '${password}')`
 
         return dbService.querypromise(sql)
     },
 
     getPerfilWId : (id) => {
 
-        sql = `SELECT * FROM Perfil WHERE idperfil = ${id}`
+        sql = `SELECT fname, lname, llname, age, gender, height, weight, iduser, idperfil FROM Perfil WHERE idperfil = ${id}`
 
         return dbService.querypromise(sql)
     },
@@ -77,14 +77,15 @@ module.exports = {
     },
     
     userExists : (username) => {
-        sql = `SELECT * FROM users WHERE username='${username}'`
+        sql = `SELECT username, pass, iduser FROM users WHERE username='${username}'`
         
         return dbService.querypromise(sql)
     },
 
     getAllRecetas : () => {
 
-        sql = 'SELECT idreceta, recetaname, tiempo, img FROM recetas'
+        // sql = 'SELECT idreceta, recetaname, tiempo, img FROM recetas'
+        sql = 'SELECT * FROM  getallreceta();'
         return dbService.querypromise(sql)
     },
 
