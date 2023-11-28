@@ -287,7 +287,7 @@ module.exports = {
     postListaIngredientes : async (req, res) => {
 
         try{
-            const { listaIngredientes } = req.body
+            const listaIngredientes = req.body.arrCart
             const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
             // console.log(listaIngredientes)
             // res.status(200).json({listaIngredientes})

@@ -9,7 +9,7 @@ getImagen*
 deleteRecetasFavorita*
 
 getAllUsers
-registerUser
+registerUser -> POST
 getAllPerfiles
 getPerfilWUser
 getPerfilWId
@@ -257,7 +257,9 @@ Params: nombreImagen
 
 Body: None
 
-Prueba: nombreImagen=Mac.jpg
+Prueba: nombreImagen = Mac.jpg
+        nombreImagen = Meatb.jpg
+        nombreImagen = Spag.jpg
 
 Output:
 

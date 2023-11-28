@@ -138,11 +138,20 @@ module.exports = {
     //     return dbService.querypromise(sql)
     // },
 
+    // postListaIngredientes : (listaIngredientes) => {
+    //     console.log(listaIngredientes)
+
+    //     // sql = `SELECT * FROM findreceta(${listaIngredientes}])`
+    //     sql = `SELECT * FROM findreceta(Array[${listaIngredientes}])`
+    //     return dbService.querypromise(sql)
+    // },
+
     postListaIngredientes : (listaIngredientes) => {
         console.log(listaIngredientes)
 
         // sql = `SELECT * FROM findreceta(${listaIngredientes}])`
         sql = `SELECT * FROM findreceta(Array[${listaIngredientes}])`
-        return dbService.querypromise(sql)
+        // return dbService.querypromise(sql)
+        return 
     }
 }
