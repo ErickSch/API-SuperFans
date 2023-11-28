@@ -149,7 +149,7 @@ module.exports = {
     postListaIngredientes : (listaIngredientes) => {
         // console.log(listaIngredientes)
         var stringListaIngredientes = "'" + listaIngredientes[0] + "'"
-        if(listaIngredientes.len > 1){
+        if(listaIngredientes.lenth > 1){
             for(var i=1; i<listaIngredientes.length; i++){
                 // console.log(listaIngredientes[i]);
                 stringListaIngredientes += ", '" + listaIngredientes[i] + "'"
