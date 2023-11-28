@@ -288,7 +288,7 @@ module.exports = {
 
         try{
             // const listaIngredientes = req.body.arrCart
-            console.log(req.body)
+            console.log(req.body[0])
             // const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
             // console.log(listaIngredientes)
             // res.status(200).json({listaIngredientes})
