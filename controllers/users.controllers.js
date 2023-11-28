@@ -207,6 +207,23 @@ module.exports = {
         }
     },
 
+    deleteRecetaFavorita : async (req, res) => {
+
+        const {idPerfil, idReceta} = req.body
+
+        try{
+
+            const  deleteFavoritas = await UserServices.deleteRecetaFavorita(idPerfil, idReceta);
+            res.json({deleteFavoritas})
+
+
+        } catch (err){
+            res.json({"message": `Error al obtener el recetas favoritas. Err: ${err}`})
+        }
+    },
+
+    
+
     getIngredientesWIdReceta : async (req, res) => {
 
         const idReceta = req.params.idReceta

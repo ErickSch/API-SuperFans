@@ -101,6 +101,14 @@ module.exports = {
 
         return dbService.querypromise(sql)
     },
+
+    deleteRecetaFavorita : (idPerfil, idReceta) => {
+
+        sql = `SELECT * FROM del_favorite(${idPerfil}, ${idReceta})`
+
+        return dbService.querypromise(sql)
+    },
+
     
     getIngredientesWIdReceta : (idReceta) => {
 
