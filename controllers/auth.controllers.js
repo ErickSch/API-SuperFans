@@ -112,6 +112,7 @@ module.exports = {
         res.header('auth-token', token).json({
             // error: null,
             error: 1,
+            id: user._id,
             data: {token}
         })
         
@@ -121,6 +122,7 @@ module.exports = {
     getRutaProtegida : (req, res) => {
         res.json({
             error: null,
+            // id: user.id,
             data: {
                 title: 'mi ruta protegida',
                 user: req.user

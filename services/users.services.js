@@ -147,12 +147,20 @@ module.exports = {
     // },
 
     postListaIngredientes : (listaIngredientes) => {
-        console.log(listaIngredientes)
+        // console.log(listaIngredientes)
+        var stringListaIngredientes = "'" + listaIngredientes[0] + "'"
+        if(listaIngredientes.len > 1){
+            for(var i=1; i<listaIngredientes.length; i++){
+                // console.log(listaIngredientes[i]);
+                stringListaIngredientes += ", '" + listaIngredientes[i] + "'"
+            }
+        }
+        // console.log(stringListaIngredientes)
 
         // sql = `SELECT * FROM findreceta(${listaIngredientes}])`
-        sql = `SELECT * FROM findreceta(Array${listaIngredientes})`
+        sql = `SELECT * FROM findreceta(Array[${stringListaIngredientes}])`
         console.log(sql)
-        // return dbService.querypromise(sql)
-        return 
+        return dbService.querypromise(sql)
+        // return 
     }
 }
