@@ -150,7 +150,8 @@ module.exports = {
         console.log(listaIngredientes)
 
         // sql = `SELECT * FROM findreceta(${listaIngredientes}])`
-        sql = `SELECT * FROM findreceta(Array[${listaIngredientes}])`
+        sql = `SELECT * FROM findreceta(Array${listaIngredientes})`
+        console.log(sql)
         // return dbService.querypromise(sql)
         return 
     }
