@@ -287,11 +287,13 @@ module.exports = {
     postListaIngredientes : async (req, res) => {
 
         try{
-            const listaIngredientes = req.body.arrCart
-            const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
+            // const listaIngredientes = req.body.arrCart
+            console.log(req.body)
+            // const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
             // console.log(listaIngredientes)
             // res.status(200).json({listaIngredientes})
-            res.status(200).json(listaIngredientesPost)
+            // res.status(200).json(listaIngredientesPost)
+            res.status(200).json(req.body)
 
 
         } catch (err){
