@@ -24,7 +24,12 @@ module.exports = {
 
         const idUser = req.params.idUser
 
+        
         try{
+            
+            if(isNaN(Number(idUser))) {
+                return res.status(400).json({ err: "Id en formato incorrecto"})
+            }
 
             const  user = await UserServices.getPerfilWId(idUser);
             res.json({user})
@@ -303,7 +308,7 @@ module.exports = {
             const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
             // console.log(listaIngredientes)
             // res.status(200).json({listaIngredientes})
-            res.status(200).json(listaIngredientesPost)
+            res.status(200).json({listaIngredientesPost})
             // res.status(200).json(req.body)
 
 
