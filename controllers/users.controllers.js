@@ -209,7 +209,6 @@ module.exports = {
             root: path.join(__dirname, '..', 'static', 'images')
             // root: 'static/images'
         }
-        console.log(path.join(__dirname, '..', 'static', 'images'))
         // const fileName = 'images/tacos.jpg';
 
 
