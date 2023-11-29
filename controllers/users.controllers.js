@@ -3,6 +3,7 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 
 const onlyLettersPattern = /^[A-Za-z]+$/;
+const onlyAlphanumericPattern = /^([a-zA-Z0-9]+)$/;
 
 
 
@@ -104,7 +105,7 @@ module.exports = {
         createUser : try{
 
 
-            if(!req.body.username.match(onlyLettersPattern)){
+            if(!req.body.username.match(onlyAlphanumericPattern)){
               return res.status(400).json({ err: "No special characters and no numbers, please!"})
             }
 
@@ -358,7 +359,7 @@ module.exports = {
             // const listaIngredientes = ["Platano", "salt"];
 
             for(var i=0; i<listaIngredientes.length; i++){
-                if(!listaIngredientes[i].match(onlyLettersPattern)){
+                if(!listaIngredientes[i].match(onlyAlphanumericPattern)){
                     return res.status(400).json({ err: "Ingrediente con formato no válido"});
                 }
             }

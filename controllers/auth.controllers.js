@@ -4,7 +4,10 @@ const AuthServices = require('../services/auth.services.js')
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
 
-const onlyLettersPattern = /^[A-Za-z]+$/;
+// const onlyLettersPattern = /^[A-Za-z]+$/;
+// const onlyLettersPattern = /^([a-zA-Z0-9 _-]+)$/;
+const onlyAlphanumericPattern = /^([a-zA-Z0-9]+)$/;
+// const onlyLettersPattern = /^[a-z0-9]+$/i;
 
 module.exports = {
 
@@ -51,7 +54,7 @@ module.exports = {
 
         if (!username) return res.status(400).json({ error: 'Ingresa un nombre de usuario' })
 
-        if(!username.match(onlyLettersPattern)){
+        if(!username.match(onlyAlphanumericPattern)){
             return res.status(400).json({ err: "Error: El nombre debe de contener solo letras."})
         }
 
