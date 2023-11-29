@@ -2,22 +2,11 @@
 const authServices = require('../services/auth.services.js');
 const AuthServices = require('../services/auth.services.js')
 const jwt = require("jsonwebtoken")
+const bcrypt = require('bcrypt');
+
+const onlyLettersPattern = /^[A-Za-z]+$/;
 
 module.exports = {
-
-    getAllIngredientes : async (req, res) => {
-        try{
-
-            const  ingredientes = await IngredientesServices.getAllIngredientes();
-            res.json({ingredientes})
-
-
-        } catch (err){
-            res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
-        }
-
-
-    },
 
     login : async (req, res) => {
 
@@ -62,7 +51,11 @@ module.exports = {
 
         if (!username) return res.status(400).json({ error: 'Ingresa un nombre de usuario' })
 
-        const user = {
+        if(!req.body.username.match(onlyLettersPattern)){
+            return res.status(400).json({ err: "Error: El nombre debe de contener solo letras."})
+        }
+
+        const userBody = {
             _id: 1,
             username: username,
             pass: password
@@ -82,14 +75,15 @@ module.exports = {
        const validUsername = user.username == userDB.username;
        if (!validUsername) return res.status(400).json({ error: 'Nombre de usuario no valido' })
 
-       console.log(userDB.username)
+    //    console.log(userDB.username)
 
-       console.log(userDB.pass)
+    //    console.log(userDB.pass)
+
 
         if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
     
-        // const validPassword = await bcrypt.compare(req.body.password, user.password);
-        const validPassword = user.pass == userDB.pass;
+        const validPassword = await bcrypt.compare(req.body.pass, userDB.pass);
+        // const validPassword = user.pass == userDB.pass;
         // console.log(user.pass)
         // console.log(userDB.pass)
 
@@ -111,7 +105,7 @@ module.exports = {
 
         res.header('auth-token', token).json({
             // error: null,
-            error: 1,
+            // error: 1,
             id: user._id,
             data: {token}
         })

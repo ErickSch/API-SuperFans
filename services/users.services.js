@@ -35,7 +35,7 @@ module.exports = {
     },
 
     // http://localhost:3000/users/perfiles/1
-    updatePerfilWId : (body, id) => {
+    updateNombrePerfilWId : (body, id) => {
 
         const { fname } = body
 

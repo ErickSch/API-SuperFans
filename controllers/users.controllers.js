@@ -7,7 +7,7 @@ const onlyLettersPattern = /^[A-Za-z]+$/;
 
 
 module.exports = {
-    getAllUsers : async (req, res, next) => {
+    getAllUsers : async (req, res) => {
         try{
 
             const  users = await UserServices.getAllUsers();
@@ -20,26 +20,22 @@ module.exports = {
 
     },
 
-    getUserWIdUser : async (req, res) => {
+    // getUserWIdUser : async (req, res) => {
 
-        const idUser = req.params.idUser
+    //     const idUser = req.params.idUser
+    //     console.log(idUser)
 
+    //     if(isNaN(Number(idUser))) {
+    //         return res.status(400).json({ err: "Id en formato incorrecto"})
+    //     }
+    //     try{
+    //         const  user = await UserServices.getPerfilWId(idUser);
+    //         res.json({user})
 
-        if(isNaN(Number(idUser))) {
-            return res.status(400).json({ err: "Id en formato incorrecto"})
-        }
-        
-        try{
-            
-
-            const  user = await UserServices.getPerfilWId(idUser);
-            res.json({user})
-
-
-        } catch (err){
-            res.json({"message": `Error al obtener el usuario. Err: ${err}`})
-        }
-    },
+    //     } catch (err){
+    //         res.json({"message": `Error al obtener el usuario. Err: ${err}`})
+    //     }
+    // },
 
     getUserWUsernameUser : async (req, res) => {
 
@@ -62,11 +58,9 @@ module.exports = {
             const  perfiles = await UserServices.getAllPerfiles();
             res.json({perfiles})
 
-
         } catch (err){
             res.json({"message": `Error al obtener los usuarios. Err: ${err}`})
         }
-
 
     },
 
@@ -105,7 +99,6 @@ module.exports = {
         }
     },
 
-    // Crear usuario
     registerUser : async (req, res) => {
 
         createUser : try{
@@ -128,20 +121,20 @@ module.exports = {
             const password = await bcrypt.hash(req.body.pass, salt);
 
             // Descomentar cuando quepan las contrasenas hashed en la bd
-            // const user = {
-            //     username: req.body.username,
-            //     pass: password
-            // };
-            
             const user = {
                 username: req.body.username,
-                pass: req.body.pass
+                pass: password
             };
+            
+            // const user = {
+            //     username: req.body.username,
+            //     pass: req.body.pass
+            // };
 
-            const  userRegistered = await UserServices.registerUser( user );
+            await UserServices.registerUser( user );
 
 
-            res.status(200).json({userRegistered})
+            res.status(200).json({"message": `Usuario registrado correctamente.`})
 
 
         } catch (err){
@@ -149,7 +142,7 @@ module.exports = {
         }
     },
 
-    updatePerfil : async (req, res) => {
+    updateNombrePerfilWId : async (req, res) => {
         const id = req.params.id
 
         if(isNaN(Number(id))) {
@@ -157,7 +150,7 @@ module.exports = {
         }
 
         try{
-            const  perfil = await UserServices.updatePerfilWId( req.body, id);
+            const  perfil = await UserServices.updateNombrePerfilWId( req.body, id);
             res.status(200).json({perfil})
 
 
@@ -175,9 +168,8 @@ module.exports = {
         }
 
         try{
-            const  height = await UserServices.updateAlturaPerfilWId( req.body, id);
-            res.status(200).json({height})
-
+            await UserServices.updateAlturaPerfilWId( req.body, id);
+            res.status(200).json({"message": `Altura actualizada correctamente.`})
 
         } catch (err){
             res.status(500).json({"message": `Error actualizar nombre. Err: ${err}`})
@@ -192,8 +184,8 @@ module.exports = {
         }
 
         try{
-            const weight = await UserServices.updatePesoPerfilWId( req.body, id);
-            res.status(200).json({weight})
+            await UserServices.updatePesoPerfilWId( req.body, id);
+            res.status(200).json({"message": `Peso actualizado correctamente.`})
 
 
         } catch (err){
@@ -209,8 +201,8 @@ module.exports = {
         }
 
         try{
-            const age = await UserServices.updateEdadPerfilWId( req.body, id);
-            res.status(200).json({age})
+            await UserServices.updateEdadPerfilWId( req.body, id);
+            res.status(200).json({"message": `Edad actualizada correctamente.`})
 
 
         } catch (err){
@@ -246,11 +238,9 @@ module.exports = {
             const  recetas = await UserServices.getAllRecetas();
             res.json({recetas})
 
-
         } catch (err){
             res.json({"message": `Error al obtener los recetas. Err: ${err}`})
         }
-
 
     },
 
@@ -276,20 +266,15 @@ module.exports = {
     deleteRecetaFavorita : async (req, res) => {
 
         const { idPerfil, idReceta } = req.body
-        console.log(req.body)
-        console.log(idPerfil)
-        console.log(idReceta)
-        // idPerfil = parseInt(idPerfil)
-        // idReceta = parseInt(idReceta)
 
-        // if(isNaN(Number(idPerfil)) || isNaN(Number(idReceta))) {
-        //     return res.status(400).json({ err: "Id en formato incorrecto"})
-        // }
+        if(isNaN(Number(idPerfil)) || isNaN(Number(idReceta))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
 
         try{
 
-            const  deleteFavoritas = await UserServices.deleteRecetaFavorita(idPerfil, idReceta);
-            res.json({deleteFavoritas})
+            await UserServices.deleteRecetaFavorita(idPerfil, idReceta);
+            res.status(200).json({"message": `Receta removida de favoritos del perfil correctamente.`})
 
         } catch (err){
             res.json({"message": `Error al obtener recetas favoritas. Err: ${err}`})
@@ -311,25 +296,24 @@ module.exports = {
             const  ingredientes = await UserServices.getIngredientesWIdReceta( idReceta );
             res.json({ingredientes})
 
-
         } catch (err){
             res.json({"message": `Error al obtener ingredientes de la receta ${idReceta}. Err: ${err}`})
         }
     },
 
-        // Crear usuario
     postRecetaFavorita : async (req, res) => {
         const { idPerfil, idReceta } = req.body
-        console.log(req.body)
 
-        // if(isNaN(Number(idPerfil)) || isNaN(Number(idReceta))) {
-        //     return res.status(400).json({ err: "Id en formato incorrecto"})
-        // }
+        if(isNaN(Number(idPerfil)) || isNaN(Number(idReceta))) {
+            return res.status(400).json({ err: "Id en formato incorrecto"})
+        }
 
         try{
-            const  recetaAgregada = await UserServices.postRecetaFavorita( idPerfil, idReceta );
+            // const  recetaAgregada = await UserServices.postRecetaFavorita( idPerfil, idReceta );
+            await UserServices.postRecetaFavorita( idPerfil, idReceta );
 
-            res.status(200).json({recetaAgregada})
+            // res.status(200).json({recetaAgregada})
+            res.status(200).json({"message": `Receta agregada como favorita a perfil correctamente.`})
 
 
         } catch (err){
@@ -371,14 +355,17 @@ module.exports = {
 
         try{
             const listaIngredientes = req.body
-            // const listaIngredientes = ["Platano", "salt"]
+            // const listaIngredientes = ["Platano", "salt"];
+
+            for(var i=0; i<listaIngredientes.length; i++){
+                if(!listaIngredientes[i].match(onlyLettersPattern)){
+                    return res.status(400).json({ err: "Ingrediente con formato no válido"});
+                }
+            }
             
-            console.log(listaIngredientes)
-            const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
             // console.log(listaIngredientes)
-            // res.status(200).json({listaIngredientes})
+            const listaIngredientesPost = await UserServices.postListaIngredientes( listaIngredientes );
             res.status(200).json({listaIngredientesPost})
-            // res.status(200).json(req.body)
 
 
         } catch (err){
