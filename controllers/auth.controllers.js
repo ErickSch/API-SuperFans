@@ -51,7 +51,7 @@ module.exports = {
 
         if (!username) return res.status(400).json({ error: 'Ingresa un nombre de usuario' })
 
-        if(!req.body.username.match(onlyLettersPattern)){
+        if(!username.match(onlyLettersPattern)){
             return res.status(400).json({ err: "Error: El nombre debe de contener solo letras."})
         }
 
@@ -82,8 +82,8 @@ module.exports = {
 
         if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
     
-        const validPassword = await bcrypt.compare(req.body.pass, userDB.pass);
-        // const validPassword = user.pass == userDB.pass;
+        // const validPassword = await bcrypt.compare(user.pass, userDB.pass);
+        const validPassword = user.pass == userDB.pass;
         // console.log(user.pass)
         // console.log(userDB.pass)
 
