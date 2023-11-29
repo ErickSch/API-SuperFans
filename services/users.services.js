@@ -108,7 +108,7 @@ module.exports = {
 
         // sql = 'SELECT idreceta, recetaname, tiempo, img FROM recetas'
         // sql = 'SELECT recetaid, recetaname, img, calories, tiempo, ingredient_list FROM  getallreceta();'
-        sql = 'SELECT recetaid, recetaname, img, calories, tiempo FROM  getallreceta();'
+        sql = 'SELECT idreceta, recetaname, img, calories, tiempo FROM  getallreceta();'
         return dbService.querypromise(sql)
     },
 

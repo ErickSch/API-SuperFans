@@ -8,6 +8,6 @@ const AuthControllers = require('../controllers/auth.controllers.js')
 router.post('/login', AuthControllers.login)
 router.get('/login/verifyUser', AuthControllers.verifyUser)
 router.post('/login/verifyUser', AuthControllers.verifyUser)
-router.get('/', AuthControllers.getRutaProtegida)
+// router.get('/', AuthControllers.getRutaProtegida)
 
 module.exports = router;
