@@ -52,10 +52,10 @@ module.exports = {
         const username = req.body.username
         const password = req.body.pass
 
-        if (!username) return res.status(400).json({ error: 'Ingresa un nombre de usuario' })
+        if (!username) return res.status(400).json({ error: 'Ingresa un nombre de usuario.' })
 
         if(!username.match(onlyAlphanumericPattern)){
-            return res.status(400).json({ err: "Error: El nombre debe de contener solo letras."})
+            return res.status(400).json({ err: "Error: El nombre debe de contener solo caracteres alfanuméricos."})
         }
 
         const userBody = {
@@ -74,23 +74,23 @@ module.exports = {
        var userDB = userDB[0];
        //    console.log(userDB[0].username)
        
-       if (!userDB) return res.status(400).json({ error: 'Nombre de usuario no valido' })
-       const validUsername = user.username == userDB.username;
-       if (!validUsername) return res.status(400).json({ error: 'Nombre de usuario no valido' })
+       if (!userDB) return res.status(400).json({ error: 'Nombre de usuario no válido.' })
+       const validUsername = userBody.username == userDB.username;
+       if (!validUsername) return res.status(400).json({ error: 'Nombre de usuario no válido.' })
 
     //    console.log(userDB.username)
 
     //    console.log(userDB.pass)
 
 
-        if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
+        if (!userBody) return res.status(400).json({ error: 'Usuario o contraseña incorrectos.' });
     
         // const validPassword = await bcrypt.compare(user.pass, userDB.pass);
-        const validPassword = user.pass == userDB.pass;
+        const validPassword = userBody.pass == userDB.pass;
         // console.log(user.pass)
         // console.log(userDB.pass)
 
-        if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
+        if (!validPassword) return res.status(400).json({ error: 'Usuario o contraseña incorrectos.' })
         
         // res.json({
         //     error: null,
@@ -102,14 +102,14 @@ module.exports = {
         // create token
         const token = jwt.sign({
             // name: user.username,
-            id: user._id,
+            id: userBody._id,
             exp: Date.now() + 60 * 1000
         }, process.env.TOKEN_SECRET)
 
         res.header('auth-token', token).json({
             // error: null,
             // error: 1,
-            id: user._id,
+            id: userBody._id,
             data: {token}
         })
         
