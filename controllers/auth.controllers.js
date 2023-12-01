@@ -49,34 +49,29 @@ module.exports = {
         
         // const username = req.params.username
         // const password = req.params.password
-        const username = req.body.username
-        const password = req.body.pass
 
-        if (!username) return res.status(400).json({ error: 'Ingresa un nombre de usuario.' })
+        const userBody = {
+            username: req.body.username,
+            pass: req.body.pass
+        }
 
-        if(!username.match(onlyAlphanumericPattern)){
+        if (!userBody.username) {
+            return res.status(400).json({ error: 'Ingresa un nombre de usuario.' })
+        } 
+        else if(!userBody.username.match(onlyAlphanumericPattern)){
             return res.status(400).json({ err: "Error: El nombre debe de contener solo caracteres alfanuméricos."})
         }
 
-        const userBody = {
-            _id: 1,
-            username: username,
-            pass: password
-        }
-        
-        // const userDB = {
-        //     _id: 1,
-        //     username: "Erick",
-        //     pass: "123"
-        // }
 
-       var userDB = await authServices.getUserWUsernameUser(username);
+       var userDB = await authServices.getUserWUsernameUser(userBody.username);
        var userDB = userDB[0];
-       //    console.log(userDB[0].username)
        
        if (!userDB) return res.status(400).json({ error: 'Nombre de usuario no válido.' })
+
        const validUsername = userBody.username == userDB.username;
+
        if (!validUsername) return res.status(400).json({ error: 'Nombre de usuario no válido.' })
+
 
     //    console.log(userDB.username)
 
@@ -85,46 +80,28 @@ module.exports = {
 
         if (!userBody) return res.status(400).json({ error: 'Usuario o contraseña incorrectos.' });
     
-        const validPassword = await bcrypt.compare(user.pass, userDB.pass);
-        // const validPassword = userBody.pass == userDB.pass;
-        // console.log(user.pass)
-        // console.log(userDB.pass)
+        // const validPassword = await bcrypt.compare(userBody.pass, userDB.pass);
+        const validPassword = userBody.pass == userDB.pass;
+
 
         if (!validPassword) return res.status(400).json({ error: 'Usuario o contraseña incorrectos.' })
         
-        // res.json({
-        //     error: null,
-        //     data: 'exito bienvenido'
-        //     // token: token
-        // })
-        
-        
         // create token
         const token = jwt.sign({
-            // name: user.username,
-            id: userBody._id,
+            // id: userDB.iduser,
+            id: 1,
             exp: Date.now() + 60 * 1000
         }, process.env.TOKEN_SECRET)
 
         res.header('auth-token', token).json({
             // error: null,
             // error: 1,
-            id: userBody._id,
+            // id: userDB.iduser,
+            id: 1,
             data: {token}
         })
         
 
-    },
-
-    getRutaProtegida : (req, res) => {
-        res.json({
-            error: null,
-            // id: user.id,
-            data: {
-                title: 'mi ruta protegida',
-                user: req.user
-            }
-        })
     },
 
     verifyUser : async (req, res) => {

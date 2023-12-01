@@ -103,17 +103,17 @@ module.exports = {
     registerUser : async (req, res) => {
 
         createUser : try{
+            const username = req.body.username;
 
-
-            if(!req.body.username.match(onlyAlphanumericPattern)){
-              return res.status(400).json({ err: "No special characters and no numbers, please!"})
+            if(!username.match(onlyAlphanumericPattern)){
+              return res.status(400).json({ err: "El nombre solo puede contener caracteres alfanuméricos."})
             }
 
-            const  userExists = await UserServices.userExists( req.body.username );
+            const  userExists = await UserServices.userExists( username );
 
             // Validar que el username no ha sido registrado
             if (userExists.length > 0){
-                res.status(500).json({"message": "El nombre de usuario ya ha sido registrado"})
+                res.status(500).json({"message": "Nombre de usuario ya registrado."})
                 break createUser;
             }
 
@@ -123,7 +123,7 @@ module.exports = {
 
             // Descomentar cuando quepan las contrasenas hashed en la bd
             const user = {
-                username: req.body.username,
+                username: username,
                 pass: password
             };
  
