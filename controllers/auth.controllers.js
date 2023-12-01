@@ -73,11 +73,14 @@ module.exports = {
 
         
         if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
+        // const validUsername = user.username == userDB.username;
+
+        // if (!validUsername) return res.status(400).json({ error: 'usuario o contraseña no válidos' })
     
         // const validPassword = await bcrypt.compare(req.body.password, user.password);
         const validPassword = user.pass == userDB.pass;
 
-        if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
+        if (!validPassword) return res.status(400).json({ error: 'usuario o contraseña no válidos' })
         
         // res.json({
         //     error: null,
@@ -95,7 +98,8 @@ module.exports = {
 
         res.header('auth-token', token).json({
             // error: null,
-            error: 1,
+            // error: 1,
+            
             data: {token}
         })
         
@@ -104,7 +108,7 @@ module.exports = {
 
     getRutaProtegida : (req, res) => {
         res.json({
-            error: null,
+            // error/: null,
             data: {
                 title: 'mi ruta protegida',
                 user: req.user

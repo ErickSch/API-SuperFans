@@ -6,6 +6,7 @@ const TestsControllers = require('../controllers/tests.controllers.js')
 // router.get('/perfiles', TestsControllers.getAllPerfiles)
 router.get('/perfiles', TestsControllers.getPerfilWId)
 router.get('/usersprisma', TestsControllers.getUsersPrisma)
+router.get('/usersprisma/:idUser', TestsControllers.getUsersPrismaWId)
 router.post('/userprisma', TestsControllers.getUserPrisma)
 
 

@@ -1,7 +1,7 @@
 const TestsServices = require('../services/tests.services.js')
 const path = require('path')
 // const prisma = require('../config/db.js')
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient, Prisma } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
@@ -47,6 +47,29 @@ module.exports = {
         } catch (err){
             res.json({"message": `Error al obtener usuarios. Err: ${err}`})
         }
+    },
+
+    getUsersPrismaWId : async (req, res) => {
+        const userId = req.params.idUser
+
+        try{
+
+            const  usuarios = await prisma.users.findFirst({
+                where: {
+                    iduser: parseInt(userId),
+                },
+            });
+            res.json({usuarios})
+
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+              // The .code property can be accessed in a type-safe manner
+                console.log(
+                  'There is a unique constraint violation, a new user cannot be created with this email'
+                )
+            }
+            throw e
+          }
     },
     
     getUserPrisma : async (req, res) => {
