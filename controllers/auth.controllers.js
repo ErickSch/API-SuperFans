@@ -85,8 +85,8 @@ module.exports = {
 
         if (!userBody) return res.status(400).json({ error: 'Usuario o contraseña incorrectos.' });
     
-        // const validPassword = await bcrypt.compare(user.pass, userDB.pass);
-        const validPassword = userBody.pass == userDB.pass;
+        const validPassword = await bcrypt.compare(user.pass, userDB.pass);
+        // const validPassword = userBody.pass == userDB.pass;
         // console.log(user.pass)
         // console.log(userDB.pass)
 

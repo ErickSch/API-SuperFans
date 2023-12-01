@@ -126,7 +126,7 @@ module.exports = {
                 username: req.body.username,
                 pass: password
             };
-            
+ 
             // const user = {
             //     username: req.body.username,
             //     pass: req.body.pass
